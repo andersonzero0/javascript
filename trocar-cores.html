@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trocador de cores</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        body {
+            background-color: lightgray;
+        }
+
+        .conteiner_main {
+            width: 500px;
+            height: 300px;
+            margin: 10% auto;
+
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-items: center;
+            justify-items: center;
+
+            border: 3px solid black;
+        }
+
+        .conteiner_optFormColor {
+            width: 100%;
+            height: 10%;
+
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: space-around;
+            justify-items: center;
+            align-items: center;
+            
+            background-color: white;
+            border-bottom: 2px solid black;
+        }
+
+        .conteiner_optFormColor > p {
+            font-weight: bold;
+            color: darkblue;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .conteiner_painelColor {
+            width: 100%;
+            height: 90%;
+
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            justify-content: center;
+            justify-items: center;
+            align-items: center;
+        }
+
+        #cont_idColor {
+            background-color: black;
+            color: white;
+            font-weight: bolder;
+            padding: 10px;
+            border-radius: 5px;
+            border: 2px solid white;
+        }
+
+        #btn {
+            margin-top: 30px;
+            background-color: white;
+            padding: 5px;
+            cursor: pointer;
+            border-radius: 3px;
+            transition: ease 0.2s;
+            font-weight: bolder;
+            border: 2px solid black;
+        }
+
+        #btn:hover {
+            transition: ease 0.2s;
+            background-color: black;
+            color: white;
+            border: 2px solid white;
+        }
+    </style>
+    
+</head>
+<body>
+    <div class="conteiner_main">
+        <div class="conteiner_optFormColor">
+            <p id="btn_Flipper">Color Flipper</p>
+            <p id="btn_Hex">Simple Hex</p>
+        </div>
+        <div id="painelColor" class="conteiner_painelColor">
+                <p id="cont_idColor">Background-Color:
+                    <span id="idColor">Transparent</span>
+                    <span id="idHex"></span></p>
+
+                <button id="btn">CLICK ME</button>
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+    document.getElementById("idHex").style.display = "none";
+
+    var btn = document.getElementById("btn");
+
+    const colors = [
+        {colorName: "Black", colorHex: "#000000"},
+        {colorName: "White", colorHex: "#FFFFFF"},
+        {colorName: "Red", colorHex: "#FF0000"},
+        {colorName: "Blue", colorHex: "#0000FF"},
+        {colorName: "Ciano", colorHex: "#0000FF"},
+        {colorName: "Green", colorHex: "#008000"},
+        {colorName: "Purple", colorHex: "#A020F0"},
+        {colorName: "DeepPink", colorHex: "#FF1493"},
+        {colorName: "Orange", colorHex: "#FFA500"},
+        {colorName: "Gold", colorHex: "#FFD700"}
+    ];
+
+    btn.onclick = function changeColor() {
+        let idColor = Math.floor(Math.random() * 11);
+        let colorHex = colors[idColor].colorHex;
+        let colorName = colors[idColor].colorName;
+        document.getElementById("painelColor").style.backgroundColor = colorHex;
+        document.getElementById("idHex").innerHTML = colorHex;
+        document.getElementById("idColor").innerHTML = colorName;
+    }
+
+    document.getElementById("btn_Flipper").onclick = function changeFlipper() {
+        document.getElementById("idHex").style.display = "none";
+        document.getElementById("idColor").style.display = "inline";
+    }
+
+    document.getElementById("btn_Hex").onclick = function changeHex() {
+        document.getElementById("idHex").style.display = "inline";
+        document.getElementById("idColor").style.display = "none";
+    }
+</script>
