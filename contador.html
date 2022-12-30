@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Fira Code', monospace;
+        }
+
+        body {
+            background-color: lightgray;
+        }
+
+        .conteiner {
+            width: 500px;
+            aspect-ratio: 3 / 2;
+
+            margin: 10% auto;
+
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            justify-content: space-evenly;
+            justify-items: center;
+            align-items: center;
+            
+            background-color: #F1F5F8;
+        }
+
+        .textCounter {
+            font-weight: bolder;
+            font-size: 30px;
+            color: #102B42;
+        }
+
+        #contador {
+            font-weight: bolder;
+            font-size: 45px;
+            color: #008000;
+        }
+
+        .box_options {
+            width: 100%;
+            
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: space-evenly;
+            justify-items: center;
+            align-items: center;
+        }
+
+        .box_options > p {
+            background-color: transparent;
+            border: 2px solid #222222;
+            padding: 2px 5px;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: ease 0.2s;
+        }
+
+        .box_options > p:hover {
+            border: 2px solid #005FCC;
+            transition: ease 0.2s;
+        }
+
+        .conteiner_modifier {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            justify-content: center;
+            justify-items: center;
+            align-items: center;
+        }
+
+        .conteiner_modifier > label {
+            font-weight: bold;
+            font-size: 18px;
+            color: darkred;
+        }
+
+        #modifier {
+            text-align: center;
+            width: 4em;
+            font-weight: bolder;
+            font-size: 18px;
+            color: black;
+        }
+
+        #modifier:focus {
+            background-color: lightgray;
+        }
+
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type=number] {
+            --moz-appearance: textfield;
+        }
+
+    </style>
+    
+</head>
+<body>
+
+    <div class="conteiner">
+        <div>
+            <p class="textCounter">Counter</p>
+        </div>
+
+        <div>
+            <p id="contador"></p>
+        </div>
+
+        <div class="box_options">
+            <p onclick="eventDecrease()" id="decrease">DECREASE</p>
+            <p onclick="eventReset()" id="reset">RESET</p>
+            <p onclick="eventIncrease()" id="increase">INCREASE</p>
+        </div>
+
+        <div class="conteiner_modifier">
+            <label for="modifier">Modifier</label>
+            <input onchange="eventModifier()" type="number" id="modifier" value="1">
+        </div>
+    </div>
+
+</body>
+</html>
+
+<script>
+    // VARIABLES
+    let i = 0;
+    let modifier = 1;
+    
+    const contador = document.getElementById("contador");
+    const btnDecrease = document.getElementById("decrease");
+    const btnReset = document.getElementById("reset");
+    const btnIncrease = document.getElementById("increase");
+    const inputModifier = document.getElementById("modifier");
+
+    // STAGE
+    contador.innerHTML = i;
+
+    // FUNCTIONS
+    function eventDecrease() {
+        i-=modifier;
+        contador.innerHTML = i;
+    }
+
+    function eventIncrease() {
+        i+=modifier;
+        contador.innerHTML = i;
+    }
+
+    function eventReset() {
+        i = 0;
+        contador.innerHTML = i;
+    }
+
+    function eventModifier() {
+        if(Number(inputModifier.value) == 0) {
+            inputModifier.value = 1;
+        }
+
+        modifier = Number(inputModifier.value);
+    }
+</script>
