@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            background-color: #EEF2F5;
+        }
+
+        .home {
+            width: 800px;
+            height: 600px;
+
+            margin: 10px auto 0 auto;
+            padding: 0 60px;
+
+
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            justify-content: space-evenly;
+            justify-items: center;
+            align-items: center;
+            
+            background-color: #EEF2F5;
+        }
+
+        .title {
+            font-size: 40px;
+            color: #102B42;
+            font-weight: bolder;
+            letter-spacing: 2px;
+            user-select: none;
+        }
+
+        .title::after {
+            content: '';
+            display: block;
+            background-color: #49A6EA;
+            width: 80px;
+            height: 5px;
+            margin: 5px auto 0 auto;
+        }
+
+        .conteiner_carrossel {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px lightgray;
+
+            padding: 30px;
+        }
+
+        .profile {
+            width: 151px;
+            height: 151px;
+            margin: auto;
+            user-select: none;
+        }
+
+        .profile:hover .icon_aspas {
+            transform: rotate(0deg);
+            transition: ease 1s;
+        }
+
+        .profile:hover #img_profile {
+            transform: scale(1.1);
+            transition: ease 1s;
+            box-shadow: 0px 0px 30px #49A6EA;
+
+        }
+
+        .icon_aspas {
+            position: absolute;
+            width: 40px;
+            background-color: #49A6EA;
+            padding: 5px;
+            border-radius: 50%;
+            transform: rotate(180deg);
+            transition: ease 1s;
+            z-index: 1;
+        }
+
+        #img_profile {
+            width: 150px;
+            border-radius: 50%;
+            box-shadow: 10px -4px #49A6EA;
+            transition: ease 1s;
+        }
+
+        .content_profile {
+            text-align: center;
+            margin: 10px 0;
+            z-index: 1;
+        }
+
+        .name_profile {
+            color: #0F2A46;
+            font-weight: bolder;
+            font-size: 20px;
+            letter-spacing: 3px;
+            margin-bottom: 3px;
+        }
+
+        .work_profile {
+            font-size: 15px;
+            color: #49A6EA;
+        }
+
+        .content_aboutMe {
+            margin: 10px auto;
+        }
+
+        .aboutMe {
+            text-align: justify;
+            font-size: 18px;
+            color: #617E98;
+        }
+
+        .content_nav {
+            text-align: center;
+            user-select: none;
+        }
+
+        .arrows {
+            font-size: 25px;
+            font-weight: bolder;
+            color: #8CCBF9;
+            margin-bottom: 10px;
+            cursor: pointer;
+            user-select: none;
+            transition: ease 0.2s;
+        }
+
+        .arrows:hover {
+            transition: ease 0.2s;
+            transform: scale(1.3);
+        }
+
+        #content_surprise {
+            border: 3px solid;
+            border-image-slice: 1;
+            background-color: transparent;
+            border-image-source: linear-gradient(to right bottom, #49A6EA 50%, #39729C 50%);
+            width: 100px;
+            margin: 0 auto;
+            padding: 3px;
+            border-width: 3px;
+            font-size: 15px;
+            text-align: center;
+            color: #49A6EA;
+            font-weight: bold;
+            cursor: pointer;
+            user-select: none;
+            transition: ease 0.2s;
+        }
+
+        #content_surprise:hover {
+            transform: scale(1.05);
+            transition: ease 0.2s;
+            border-image-source: linear-gradient(to right bottom, #39729C 50%, #49A6EA 50%);
+        }
+    </style>
+    
+</head>
+<body>
+
+    <div class="home">
+
+        <div>
+            <p class="title">Our Reviews</p>
+        </div>
+
+        <div class="conteiner_carrossel">
+
+            <div class="profile">
+                <img class="icon_aspas" src="images/aspas-branco.png" alt="aspas-branco">
+                <img id="img_profile" src="" alt="img_perfil">
+            </div>
+
+            <div class="content_profile">
+                <p id="name_profile" class="name_profile"></p>
+                <p id="work_profile" class="work_profile"></p>
+            </div>
+
+            <div class="content_aboutMe">
+                <p id="aboutMe_profile" class="aboutMe"></p>
+            </div>
+
+            <div class="content_nav">
+                <div class="box_arrows">
+                    <span onclick="backPerfil()" class="material-symbols-outlined arrows">
+                        arrow_back_ios
+                    </span>
+
+                    <span onclick="forwardPerfil()" class="material-symbols-outlined arrows">
+                        arrow_forward_ios
+                    </span>
+                </div>
+
+                <div>
+                    <button onclick="selectPerfilRnd()" id="content_surprise">Surprise Me</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
+
+<script>
+
+    // VARIABLES
+    const lorem = "Lorem ipsum dolor, sit amet consectetur adipisicing elit." + 
+    " Fugiat, aut dolore maxime eligendi illum beatae cumque fugit blanditiis," + 
+    " asperiores dolorem nesciunt numquam doloremque sit qui amet similique" + 
+    " aspernatur deserunt eum";
+    const img_profile = document.getElementById("img_profile");
+    const name_profile = document.getElementById("name_profile");
+    const work_profile = document.getElementById("work_profile");
+    const aboutMe_profile = document.getElementById("aboutMe_profile");
+
+    let perfil_id = 0;
+    //
+
+    // FUNCTIONS
+    function insertDadosPerfil(name, work, aboutMe, nameFileImgPerfil) {
+        return {name: name, work: work.toUpperCase(), aboutMe: aboutMe, nameFileImgPerfil: nameFileImgPerfil}
+    }
+
+    function viewDadosPerfil(id) {
+        img_profile.src = "images/" + perfis[id].nameFileImgPerfil;
+        name_profile.innerHTML = perfis[id].name;
+        work_profile.innerHTML = perfis[id].work;
+        aboutMe_profile.innerHTML = perfis[id].aboutMe;
+    }
+
+    function backPerfil() {
+        if(perfil_id == 0) {
+            perfil_id = 4;
+        }else{
+            perfil_id--;
+        }
+
+        viewDadosPerfil(perfil_id);
+    }
+
+    function forwardPerfil() {
+        if(perfil_id == 4) {
+            perfil_id = 0;
+        }else {
+            perfil_id++;
+        }
+        viewDadosPerfil(perfil_id);
+    }
+
+    function selectPerfilRnd() {
+        perfil_id = Math.floor(Math.random() * 5);
+        viewDadosPerfil(perfil_id);
+    }
+    //
+
+    // LIST PROFILES
+    const perfis = [
+        insertDadosPerfil("David John", "WEB DEVELOPER", lorem, "david-john.jpg"),
+        insertDadosPerfil("Oliver Smith", "MOBILE DEVELOPER", lorem, "oliver-smith.jpg"),
+        insertDadosPerfil("Harry Jones", "SENIOR DEVELOPER", lorem, "harry-jones.jpg"),
+        insertDadosPerfil("Olivia Williams", "JAVA DEVELOPER", lorem, "olivia-williams.jpg"),
+        insertDadosPerfil("Emily Taylor", "FRONT-END DEVELOPER", lorem, "emily-taylor.jpg")
+    ];
+    //
+
+    // STAGE
+    viewDadosPerfil(0);
+    //
+
+
+</script>
